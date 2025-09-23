@@ -33,7 +33,6 @@ Beautiful, responsive HTML5 Canvas drawing app with a clean blue & white theme. 
 
 ## 🖼️ Screenshots
 
-You can add your own screenshots in a docs/ folder and reference them here:
 ![Canvas Studio Screenshot](https://github.com/MdSaifAli063/Canvas-Drawing-App/blob/5fd826025efc81744236e65f1178668b5ffad866/Screenshot%202025-09-24%20004621.png)
 
 ---
