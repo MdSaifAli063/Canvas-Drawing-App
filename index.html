@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Canvas Drawing App</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <div class="logo">✏️</div>
+      <div class="title">
+        <h1>Canvas Studio</h1>
+        <p>Draw shapes, annotate, and export</p>
+      </div>
+    </div>
+    <nav class="top-actions">
+      <button id="undoBtn" class="btn icon" title="Undo (Ctrl/Cmd+Z)">↩️</button>
+      <button id="redoBtn" class="btn icon" title="Redo (Ctrl/Cmd+Y)">↪️</button>
+      <button id="downloadBtn" class="btn" title="Download PNG">Download</button>
+      <button id="saveBtn" class="btn outline" title="Save to browser storage">Save</button>
+      <button id="loadBtn" class="btn outline" title="Load from browser storage">Load</button>
+      <button id="importBtn" class="btn outline" title="Import Image">Import</button>
+      <input id="importFile" type="file" accept="image/*" hidden />
+      <button id="gridToggle" class="btn outline" title="Toggle Grid (G)">Grid</button>
+      <button id="clearCanvas" class="btn danger" title="Clear Canvas">Clear</button>
+    </nav>
+    <button id="toggleControls" class="btn ghost mobile-only" aria-expanded="false">Show Controls</button>
+  </header>
+
+  <main class="app">
+    <aside class="controls" id="controlsPanel">
+      <section class="card">
+        <h3>Tool</h3>
+        <div class="segmented">
+          <label><input type="radio" name="tool" value="pen" checked /> <span>Pen</span></label>
+          <label><input type="radio" name="tool" value="eraser" /> <span>Eraser</span></label>
+          <label><input type="radio" name="tool" value="line" /> <span>Line</span></label>
+          <label><input type="radio" name="tool" value="rect" /> <span>Rect</span></label>
+          <label><input type="radio" name="tool" value="square" /> <span>Square</span></label>
+          <label><input type="radio" name="tool" value="circle" /> <span>Circle</span></label>
+          <label><input type="radio" name="tool" value="ellipse" /> <span>Ellipse</span></label>
+          <label><input type="radio" name="tool" value="polygon" /> <span>Polygon</span></label>
+          <label><input type="radio" name="tool" value="text" /> <span>Text</span></label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3>Stroke & Style</h3>
+        <div class="form-row">
+          <label for="lineWidth">Line Width</label>
+          <div class="range-wrap">
+            <input id="lineWidth" type="range" min="1" max="200" step="1" value="4"/>
+            <output id="lineWidthOut">4</output>
+          </div>
+        </div>
+        <div class="form-row">
+          <span>Line Cap</span>
+          <div class="segmented small">
+            <label><input name="lineCap" value="round" type="radio" checked /> <span>Round</span></label>
+            <label><input name="lineCap" value="square" type="radio" /> <span>Square</span></label>
+            <label><input name="lineCap" value="butt" type="radio" /> <span>Butt</span></label>
+          </div>
+        </div>
+        <div class="form-row two-col">
+          <div>
+            <label for="lineDash">Dash Length</label>
+            <input id="lineDash" type="range" min="0" max="40" step="1" value="0"/>
+          </div>
+          <div>
+            <label for="lineGap">Dash Gap</label>
+            <input id="lineGap" type="range" min="0" max="40" step="1" value="0"/>
+          </div>
+        </div>
+        <div class="form-row">
+          <label class="checkbox">
+            <input type="checkbox" id="xor" />
+            <span>XOR blend</span>
+          </label>
+          <small>Experimental blending. Prefer Pen/Eraser for normal edits.</small>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3>Colors</h3>
+        <div class="form-row two-col">
+          <div>
+            <label for="strokeColor">Stroke</label>
+            <input id="strokeColor" type="color" value="#1D4ED8"/>
+          </div>
+          <div>
+            <label for="fillColor">Fill</label>
+            <input id="fillColor" type="color" value="#24B0D5"/>
+          </div>
+        </div>
+        <div class="form-row">
+          <label class="checkbox">
+            <input id="fillBox" type="checkbox" checked />
+            <span>Fill shapes/text</span>
+          </label>
+        </div>
+        <div class="form-row">
+          <label for="backgroundColor">Background</label>
+          <input id="backgroundColor" type="color" value="#ffffff"/>
+          <small>Changing background clears canvas.</small>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3>Polygon</h3>
+        <div class="form-row">
+          <label for="polygonSides">Sides</label>
+          <div class="range-wrap">
+            <input id="polygonSides" type="range" min="3" max="12" step="1" value="5"/>
+            <output id="polygonSidesOut">5</output>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3>Text</h3>
+        <div class="form-row">
+          <label for="textInput">Content</label>
+          <input type="text" id="textInput" placeholder="Click on canvas to place"/>
+        </div>
+        <div class="form-row two-col">
+          <div>
+            <label for="fontSize">Font Size</label>
+            <div class="range-wrap">
+              <input id="fontSize" type="range" min="8" max="200" value="36"/>
+              <output id="fontSizeOut">36</output>
+            </div>
+          </div>
+          <div>
+            <label for="fontFamily">Font</label>
+            <select id="fontFamily">
+              <option value="Arial, sans-serif">Arial</option>
+              <option value="Inter, system-ui, sans-serif" selected>Inter</option>
+              <option value="Georgia, serif">Georgia</option>
+              <option value="Courier New, monospace">Courier New</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3>Utility</h3>
+        <div class="form-row">
+          <button type="button" class="btn ghost" id="resetSettings">Reset Settings</button>
+        </div>
+        <div class="tips">
+          <p>Shortcuts: Ctrl/Cmd+Z=Undo, Ctrl/Cmd+Y=Redo, P=Pen, E=Eraser, T=Text, G=Grid</p>
+        </div>
+      </section>
+    </aside>
+
+    <section class="canvas-area">
+      <div class="canvas-toolbar">
+        <span class="hint">Tip: Use Pen for sketching, hold and drag to preview shapes</span>
+      </div>
+      <div class="canvas-wrapper">
+        <canvas id="canvas" width="1200" height="800"></canvas>
+        <div id="gridOverlay" class="grid-overlay" aria-hidden="true"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <span>Built with HTML5 Canvas • Blue & White Theme</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
