@@ -2,10 +2,14 @@
 
 Beautiful, responsive HTML5 Canvas drawing app with a clean blue & white theme. Sketch freely, draw shapes, add text, toggle a grid, and export your artwork—right in the browser.
 
+<div align="center">
+
 ![Static Badge](https://img.shields.io/badge/HTML5%20Canvas-%F0%9F%8E%A8-blue)
 ![Static Badge](https://img.shields.io/badge/Responsive-Yes-1e90ff)
 ![Static Badge](https://img.shields.io/badge/Theme-Blue%20%26%20White-2563eb)
 ![Static Badge](https://img.shields.io/badge/License-MIT-brightgreen)
+
+</div>
 
 ---
 
