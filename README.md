@@ -42,11 +42,6 @@ Beautiful, responsive HTML5 Canvas drawing app with a clean blue & white theme. 
 
 . ├── index.html # App UI ├── style.css # Blue & white theme + responsive layout └── script.js # Drawing logic & interactions
 
-
-Ensure the paths in index.html match:
--  <link rel="stylesheet" href="style.css"/>
-- <script src="script.js"></script>
-
 ---
 
 ## 🚀 Quick Start
