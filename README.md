@@ -6,6 +6,7 @@ Beautiful, responsive HTML5 Canvas drawing app with a clean blue & white theme. 
 
 ![Static Badge](https://img.shields.io/badge/HTML5%20Canvas-%F0%9F%8E%A8-blue)
 ![Static Badge](https://img.shields.io/badge/CSS%20-darkblue)
+![Static Badge](https://img.shields.io/badge/JavaScript%20-yellow)
 ![Static Badge](https://img.shields.io/badge/Responsive-Yes-1e90ff)
 ![Static Badge](https://img.shields.io/badge/Theme-Blue%20%26%20White-2563eb)
 ![Static Badge](https://img.shields.io/badge/License-MIT-brightgreen)
