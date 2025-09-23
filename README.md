@@ -135,13 +135,6 @@ Canvas size adapts to the container; internal rendering scales for DPR.
 
 ---
 
-## 🖼️ Screenshots
-
-You can add your own screenshots in a docs/ folder and reference them here:
-![Canvas Studio Screenshot](docs/screenshot.png)
-
----
-
 ## 📜 License
 
 MIT © Your Name
