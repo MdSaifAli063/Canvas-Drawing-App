@@ -144,7 +144,7 @@ Canvas size adapts to the container; internal rendering scales for DPR.
 
 ## 📜 License
 
-MIT © Your Name
+MIT © Md Saif Ali
 
 ---
 
